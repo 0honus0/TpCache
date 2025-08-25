@@ -6,7 +6,7 @@ if (!defined('__TYPECHO_ROOT_DIR__')) exit;
  *
  * @package TpCache
  * @author Suroy,gogobody
- * @version 1.0.6
+ * @version 1.0.7
  * @link https://www.ijkxs.com
  */
 
@@ -136,6 +136,10 @@ class TpCache_Plugin implements Typecho_Plugin_Interface
 		$form->addInput($element);
 
 		$element = new Typecho_Widget_Helper_Form_Element_Text('port', null, '11211', '端口号', 'memcache(d)默认为11211，redis默认为6379，其他类型随意填写');
+		$element->setAttribute('class', 'j-setting-content j-setting-config');
+		$form->addInput($element);
+
+		$element = new Typecho_Widget_Helper_Form_Element_Text('token', null, '', '鉴权信息', 'memcache(d)可配置用户名和密码(user:password)，Redis仅需配置密码(password)，无需鉴权则留空');
 		$element->setAttribute('class', 'j-setting-content j-setting-config');
 		$form->addInput($element);
 
