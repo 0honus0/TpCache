@@ -6,12 +6,14 @@ class typecho_memcached implements TpCache
 	private $mc = null;
 	private $host = '127.0.0.1';
 	private $port = 11211;
+	private $token = null;
 	private $expire = 86400;
 
 	private function __construct($option = null)
 	{
 		$this->host = $option->host;
 		$this->port = $option->port;
+		$this->token = $option->token;
 		$this->expire = $option->expire;
 		$this->init($option);
 	}
@@ -29,6 +31,10 @@ class typecho_memcached implements TpCache
 		try {
 			$this->mc = new Memcached;
 			$this->mc->addServer($this->host, $this->port);
+			if($this->token){
+				$token = explode(':', $this->token);
+				$this->mc->setsetSaslAuthData($token[0], $token[1]);
+			}
 		} catch (Exception $e){
 			$this->mc = null;
 			echo $e->getMessage();

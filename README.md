@@ -42,6 +42,17 @@ Tepass 说明：需要先启动本插件，在启动tepass 插件，否则 tepas
 <?php echo Typecho_Plugin::factory('TpCache.Widget_Cache')->TpCache_getCache($key); ?>
 ```
 
+#### 特别注明
+
+##### 鉴权信息
+
+建议启用，可有效提高安全性。
+
+1. memcached
+支持设置用户名及密码，以 `:` 进行分割，例如: `username:password`
+
+2. redis
+仅支持设置密码，例如 `password`
 
 ## 缓存更新机制
 
